@@ -1,0 +1,1 @@
+INSERT INTO person (login, email, password) VALUES ('Andrey', 'Andrey@yandex.ru', 'Andrey`s_Password'), ('Kate', 'Kate@yandex.ru', 'Kate`s_Password'), ('Egor', 'Egor@yandex.ru', 'Egor`s_Password'), ('Alexander', 'Alexander@yandex.ru', 'Alexander`s_Password'), ('Airat', 'Airat@yandex.ru', 'rootroot');
