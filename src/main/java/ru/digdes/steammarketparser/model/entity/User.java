@@ -4,7 +4,10 @@ import javax.persistence.*;
 import java.sql.Date;
 
 /**
- * TODO javadoc
+ * "User" entity.
+ * Describes all the fields of this entity.
+ * Field "Password" must be changed, because only idiots
+ * store passwords in their pure form.
  */
 @Entity
 @Table(name = "User")
@@ -49,19 +52,5 @@ public class User {
         return registrationDate;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setRegistrationDate(Date registrationDate) {
-        this.registrationDate = registrationDate;
-    }
 }

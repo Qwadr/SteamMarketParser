@@ -1,7 +1,7 @@
 package ru.digdes.steammarketparser.model.enums;
 
 /**
- * TODO javadoc
+ * All possible rarities of Dota 2 items.
  */
 public enum ItemQuality {
     COMMON {

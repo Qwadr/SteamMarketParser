@@ -1,12 +1,15 @@
 package ru.digdes.steammarketparser.model.entity;
 
+import ru.digdes.steammarketparser.model.enums.ItemQuality;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- * TODO javadoc
+ * "Item" entity.
+ * Describes all the fields of this entity.
  */
 public class Item {
     @Id
@@ -18,7 +21,7 @@ public class Item {
     private String name;
 
     @Column(name = "Quality", nullable = false)
-    private String quality;
+    private ItemQuality quality;
 
     @Column(name = "SteamURL", nullable = false)
     private String steamURL;
@@ -38,7 +41,7 @@ public class Item {
         return name;
     }
 
-    public String getQuality() {
+    public ItemQuality getQuality() {
         return quality;
     }
 
@@ -54,7 +57,7 @@ public class Item {
         this.name = name;
     }
 
-    public void setQuality(String quality) {
+    public void setQuality(ItemQuality quality) {
         this.quality = quality;
     }
 
