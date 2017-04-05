@@ -19,6 +19,6 @@ Web-приложение **SteamMarketParser**.
 
 Схема базы данных:
 
-![image](https://i.imgsafe.org/520a29474e.jpg)
+![image](https://i.imgsafe.org/5223735578.jpg)
 
 Хазипов А.Р.
