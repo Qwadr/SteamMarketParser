@@ -2,55 +2,50 @@ package ru.digdes.steammarketparser.model.entity;
 
 import ru.digdes.steammarketparser.model.enums.ItemQuality;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * "Item" entity.
  * Describes all the fields of this entity.
  */
+@Entity
+@Table(name = "Item")
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ItemID")
     private long itemID;
 
-    @Column(name = "Name", nullable = false)
     private String name;
-
-    @Column(name = "Quality", nullable = false)
     private ItemQuality quality;
-
-    @Column(name = "SteamURL", nullable = false)
     private String steamURL;
-
-    @Column(name = "Description", columnDefinition = "date")
     private String description;
 
     public Item() {
-
     }
 
-    public long getItemID() {
-        return itemID;
-    }
-
+    @Column(name = "Name", nullable = false)
     public String getName() {
         return name;
     }
 
+    @Column(name = "Quality", nullable = false)
     public ItemQuality getQuality() {
         return quality;
     }
 
+    @Column(name = "SteamURL", nullable = false)
     public String getSteamURL() {
         return steamURL;
     }
 
+    @Column(name = "Description", columnDefinition = "text")
     public String getDescription() {
         return description;
+    }
+
+    public long getItemID() {
+        return itemID;
     }
 
     public void setName(String name) {
@@ -68,4 +63,6 @@ public class Item {
     public void setDescription(String description) {
         this.description = description;
     }
+
+
 }
