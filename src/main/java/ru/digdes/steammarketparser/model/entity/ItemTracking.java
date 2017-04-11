@@ -15,7 +15,7 @@ import javax.persistence.*;
  */
 @Entity
 @Data
-@Table(name = "ItemTrackings")
+@Table(name = "ItemTracking")
 public class ItemTracking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
