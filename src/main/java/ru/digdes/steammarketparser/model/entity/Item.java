@@ -4,7 +4,6 @@ import lombok.Data;
 import ru.digdes.steammarketparser.model.enums.ItemQuality;
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -44,4 +43,15 @@ public class Item {
     @JoinColumn(name="ItemID")
     private List<Price> prices;
 
+    @Override
+    public String toString() {
+        return "Item{" +
+                "itemID=" + itemID +
+                ", name='" + name + '\'' +
+                ", quality=" + quality +
+                ", steamURL='" + steamURL + '\'' +
+                ", description='" + description + '\'' +
+                ", number of price snapshots=" + prices.size() +
+                '}';
+    }
 }

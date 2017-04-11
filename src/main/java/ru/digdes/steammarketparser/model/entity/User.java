@@ -3,9 +3,7 @@ package ru.digdes.steammarketparser.model.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
 import java.util.Date;
-import java.util.List;
 
 /**
  * "User" entity.

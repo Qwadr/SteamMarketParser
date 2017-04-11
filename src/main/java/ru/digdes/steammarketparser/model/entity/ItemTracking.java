@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 
 /**
- * "TrackingItem" entity.
+ * "ItemTracking" entity.
  *
  * Fields:
  * trackingId - unique identifier;
@@ -15,11 +15,11 @@ import javax.persistence.*;
  */
 @Entity
 @Data
-@Table(name = "TrackingItems")
-public class TrackingItem {
+@Table(name = "ItemTrackings")
+public class ItemTracking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int trackingID;
+    private long trackingID;
 
     @ManyToOne
     @JoinColumn(name = "UserID")

@@ -34,7 +34,7 @@
         <mapping class="ru.digdes.steammarketparser.model.entity.Item"/>
         <mapping class="ru.digdes.steammarketparser.model.entity.User"/>
         <mapping class="ru.digdes.steammarketparser.model.entity.Price"/>
-        <mapping class="ru.digdes.steammarketparser.model.entity.TrackingItem"/>
+        <mapping class="ru.digdes.steammarketparser.model.entity.ItemTracking"/>
     </session-factory>
 
 </hibernate-configuration>
