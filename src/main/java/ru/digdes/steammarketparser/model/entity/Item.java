@@ -1,68 +1,47 @@
 package ru.digdes.steammarketparser.model.entity;
 
+import lombok.Data;
 import ru.digdes.steammarketparser.model.enums.ItemQuality;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
+import java.util.List;
 
 /**
  * "Item" entity.
  * Describes all the fields of this entity.
+ *
+ * Fields:
+ * itemID - unique identifier;
+ * name - full name of the item on the Steam Community Market;
+ * quality - quality of the item (see ru.digdes.steammarketparser.model.enums.ItemQuality);
+ * SteamURL - link to the item page on Steam Community Market;
+ * description - text description from Steam Community Market;
+ * prices - in short, tracking result.
  */
 @Entity
-@Table(name = "Item")
+@Data
+@Table(name = "Items")
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ItemID")
     private long itemID;
 
-    private String name;
-    private ItemQuality quality;
-    private String steamURL;
-    private String description;
-
-    public Item() {
-    }
-
     @Column(name = "Name", nullable = false)
-    public String getName() {
-        return name;
-    }
+    private String name;
 
     @Column(name = "Quality", nullable = false)
-    public ItemQuality getQuality() {
-        return quality;
-    }
+    private ItemQuality quality;
 
     @Column(name = "SteamURL", nullable = false)
-    public String getSteamURL() {
-        return steamURL;
-    }
+    private String steamURL;
 
     @Column(name = "Description", columnDefinition = "text")
-    public String getDescription() {
-        return description;
-    }
+    private String description;
 
-    public long getItemID() {
-        return itemID;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setQuality(ItemQuality quality) {
-        this.quality = quality;
-    }
-
-    public void setSteamURL(String steamURL) {
-        this.steamURL = steamURL;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
+    @OneToMany
+    @JoinColumn(name="ItemID")
+    private List<Price> prices;
 
 }

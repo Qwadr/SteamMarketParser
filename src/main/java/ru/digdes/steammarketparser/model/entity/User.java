@@ -1,17 +1,28 @@
 package ru.digdes.steammarketparser.model.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 
 /**
  * "User" entity.
+ *
  * Describes all the fields of this entity.
  * Field "Password" must be changed, because only idiots
  * store passwords in their pure form.
+ *
+ * userID - unique identifier;
+ * login - so far there are no restrictions here, but maybe it will be changed;
+ * email - speaks for itself;
+ * password - now the password as it is, must be fixed;
+ * registrationDate - speaks for itself.
  */
 @Entity
-@Table(name = "User")
+@Data
+@Table(name = "Users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,40 +42,9 @@ public class User {
     @Temporal(TemporalType.TIMESTAMP)
     private Date registrationDate;
 
-    public User() {
-    }
 
 
-    public String getLogin() {
-        return login;
-    }
-    public String getEmail() {
-        return email;
-    }
-    public String getPassword() {
-        return password;
-    }
-    public Date getRegistrationDate() {
-        return registrationDate;
-    }
 
-    public long getUserID() {
-        return userID;
-    }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setRegistrationDate(Date registrationDate) {
-        this.registrationDate = registrationDate;
-    }
 }

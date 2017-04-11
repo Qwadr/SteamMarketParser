@@ -27,10 +27,14 @@
 
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>
+        
+        <property name="hibernate.hbm2ddl.auto">create</property>
 
         <!-- Mapping files -->
         <mapping class="ru.digdes.steammarketparser.model.entity.Item"/>
         <mapping class="ru.digdes.steammarketparser.model.entity.User"/>
+        <mapping class="ru.digdes.steammarketparser.model.entity.Price"/>
+        <mapping class="ru.digdes.steammarketparser.model.entity.TrackingItem"/>
     </session-factory>
 
 </hibernate-configuration>
