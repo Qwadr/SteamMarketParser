@@ -13,7 +13,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
     <style type="text/css">
         body{
-            background:url(../webapp/resources/images/bg404.jpg) ;
+            background:url(/resources/images/bg404.jpg) ;
         }
         .wrap{
             margin:0 auto;
