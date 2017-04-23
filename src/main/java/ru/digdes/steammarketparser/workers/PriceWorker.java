@@ -1,4 +1,4 @@
-package ru.digdes.steammarketparser.server.workers;
+package ru.digdes.steammarketparser.workers;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

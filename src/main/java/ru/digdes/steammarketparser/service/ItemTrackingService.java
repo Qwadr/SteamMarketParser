@@ -6,7 +6,6 @@ import ru.digdes.steammarketparser.model.entity.ItemTracking;
 /**
  * TODO javadoc
  */
-@Service
 public interface ItemTrackingService {
     Iterable<ItemTracking> findAll();
 
