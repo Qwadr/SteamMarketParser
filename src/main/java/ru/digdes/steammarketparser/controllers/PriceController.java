@@ -5,18 +5,17 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import ru.digdes.steammarketparser.model.entity.User;
-import ru.digdes.steammarketparser.service.UserService;
+import ru.digdes.steammarketparser.model.entity.Price;
+import ru.digdes.steammarketparser.service.PriceService;
 
 @RestController
-public class UserController {
-
-    @Qualifier("userServiceImpl")
+public class PriceController {
+    @Qualifier("priceServiceImpl")
     @Autowired
-    private UserService userService;
+    private PriceService priceService;
 
-    @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public Iterable<User> allUsers() {
-        return userService.findAll();
+    @RequestMapping(value = "/prices", method = RequestMethod.GET)
+    public Iterable<Price> allPrices() {
+        return priceService.findAll();
     }
 }

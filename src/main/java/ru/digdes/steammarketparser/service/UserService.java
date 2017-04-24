@@ -6,5 +6,5 @@ import ru.digdes.steammarketparser.model.entity.User;
  * Service providing work with users.
  */
 public interface UserService {
-    Iterable<User> getAllUsers();
+    Iterable<User> findAll();
 }

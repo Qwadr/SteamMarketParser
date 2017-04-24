@@ -1,5 +1,6 @@
 package ru.digdes.steammarketparser.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -24,6 +25,7 @@ public class Price {
     @Column(name = "PriceID")
     private long priceID;
 
+    @JsonIgnore //TODO dto & вытащить одно поле из item
     @OneToOne
     @JoinColumn(name="ItemID")
     private Item item;
