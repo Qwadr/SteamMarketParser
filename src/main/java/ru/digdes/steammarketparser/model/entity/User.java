@@ -7,11 +7,11 @@ import java.util.Date;
 
 /**
  * "User" entity.
- *
+ * <p>
  * Describes all the fields of this entity.
  * Field "Password" must be changed, because only idiots
  * store passwords in their pure form.
- *
+ * <p>
  * userID - unique identifier;
  * login - so far there are no restrictions here, but maybe it will be changed;
  * email - speaks for itself;
@@ -39,10 +39,4 @@ public class User {
     @Column(name = "RegistrationDate", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date registrationDate;
-
-
-
-
-
-
 }

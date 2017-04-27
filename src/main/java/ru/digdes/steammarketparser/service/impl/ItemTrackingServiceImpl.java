@@ -2,15 +2,20 @@ package ru.digdes.steammarketparser.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.digdes.steammarketparser.dto.ItemTrackingDTO;
+import ru.digdes.steammarketparser.model.entity.Item;
 import ru.digdes.steammarketparser.model.entity.ItemTracking;
 import ru.digdes.steammarketparser.model.repository.ItemTrackingRepository;
 import ru.digdes.steammarketparser.service.ItemTrackingService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * TODO javadoc
  */
 @Service
-public class ItemTrackingServiceImpl implements ItemTrackingService{
+public class ItemTrackingServiceImpl implements ItemTrackingService {
 
     private final ItemTrackingRepository itemTrackingRepository;
 
@@ -42,5 +47,17 @@ public class ItemTrackingServiceImpl implements ItemTrackingService{
     @Override
     public ItemTracking save(ItemTracking tracking) {
         return itemTrackingRepository.save(tracking);
+    }
+
+    @Override
+    public Iterable<ItemTrackingDTO> getAllInDTOFormat() {
+        Iterable<ItemTracking> trackings = itemTrackingRepository.findAll();
+        List<ItemTrackingDTO> trackingDTOs = new ArrayList<>();
+
+        for (ItemTracking itemTracking : trackings) {
+            trackingDTOs.add(new ItemTrackingDTO(itemTracking));
+        }
+
+        return trackingDTOs;
     }
 }

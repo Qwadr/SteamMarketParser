@@ -1,6 +1,7 @@
 package ru.digdes.steammarketparser.service;
 
 import org.springframework.stereotype.Service;
+import ru.digdes.steammarketparser.dto.ItemTrackingDTO;
 import ru.digdes.steammarketparser.model.entity.ItemTracking;
 
 /**
@@ -16,4 +17,6 @@ public interface ItemTrackingService {
     Iterable<ItemTracking> findItemTrackingsByTrackingStatusIsTrueOrderByItem_ItemID();
 
     ItemTracking save(ItemTracking tracking);
+
+    Iterable<ItemTrackingDTO> getAllInDTOFormat();
 }

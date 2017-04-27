@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import ru.digdes.steammarketparser.dto.ItemTrackingDTO;
 import ru.digdes.steammarketparser.model.entity.ItemTracking;
 import ru.digdes.steammarketparser.service.ItemTrackingService;
 
@@ -15,7 +16,7 @@ public class ItemTrackingController {
     private ItemTrackingService itemTrackingService;
 
     @RequestMapping(value = "/itemtracking", method = RequestMethod.GET)
-    public Iterable<ItemTracking> allItemTracking() {
-        return itemTrackingService.findAll();
+    public Iterable<ItemTrackingDTO> allItemTracking() {
+        return itemTrackingService.getAllInDTOFormat();
     }
 }

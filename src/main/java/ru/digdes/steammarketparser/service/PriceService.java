@@ -1,5 +1,6 @@
 package ru.digdes.steammarketparser.service;
 
+import ru.digdes.steammarketparser.dto.PriceDTO;
 import ru.digdes.steammarketparser.model.entity.Price;
 
 /**
@@ -7,4 +8,6 @@ import ru.digdes.steammarketparser.model.entity.Price;
  */
 public interface PriceService {
     Iterable<Price> findAll();
+
+    Iterable<PriceDTO> getAllInDTOFormat();
 }

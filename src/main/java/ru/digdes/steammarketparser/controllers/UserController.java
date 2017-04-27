@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import ru.digdes.steammarketparser.dto.UserDTO;
 import ru.digdes.steammarketparser.model.entity.User;
 import ru.digdes.steammarketparser.service.UserService;
 
@@ -16,7 +17,7 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public Iterable<User> allUsers() {
-        return userService.findAll();
+    public Iterable<UserDTO> allUsers() {
+        return userService.getAllInDTOFormat();
     }
 }
