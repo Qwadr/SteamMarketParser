@@ -21,11 +21,11 @@ public class ItemTracking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long trackingID;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "UserID")
     private User user;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ItemID")
     private Item item;
 

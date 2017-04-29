@@ -2,6 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:task="http://www.springframework.org/schema/task"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
@@ -11,30 +12,37 @@
 	   http://www.springframework.org/schema/context
 	   http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/data/jpa
-       http://www.springframework.org/schema/data/jpa/spring-jpa.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+       http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/task
+       http://www.springframework.org/schema/task/spring-task.xsd">
 
 
     <context:annotation-config/>
     <context:component-scan base-package="ru.digdes.steammarketparser"/>
 
-    <tx:annotation-driven transaction-manager="transactionManager"  mode="proxy"/>
+    <!--mode="proxy"-->
 
-    <jpa:repositories base-package="ru.digdes.steammarketparser.model.repository" entity-manager-factory-ref="entityManagerFactory"/>
+    <tx:annotation-driven transaction-manager="transactionManager" />
+
+    <jpa:repositories base-package="ru.digdes.steammarketparser.model.repository"
+                      entity-manager-factory-ref="entityManagerFactory"/>
 
     <!-- Static Resources Configuration (get access to static sources such as CSS and JavaScript files) -->
     <mvc:resources mapping="/resources/**" location="/resources/"/>
     <mvc:annotation-driven/>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="org.postgresql.Driver" />
-        <property name="url" value="jdbc:postgresql://localhost:5432/steammarket" />
-        <property name="username" value="postgres" />
-        <property name="password" value="rootroot" />
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="url" value="jdbc:postgresql://localhost:5432/steammarket"/>
+        <property name="username" value="postgres"/>
+        <property name="password" value="rootroot"/>
     </bean>
 
     <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <property name="packagesToScan" value="ru.digdes.steammarketparser.model.entity" />
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="ru.digdes.steammarketparser.model.entity"/>
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL95Dialect</prop>
@@ -48,16 +56,16 @@
     </bean>
 
     <bean id="entityManagerFactory"
-          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" >
-        <property name="dataSource" ref="dataSource" />
-        <property name="packagesToScan" value="ru.digdes.steammarketparser.model.entity" />
+          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="ru.digdes.steammarketparser.model.entity"/>
 
         <property name="jpaProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL95Dialect</prop>
-                <prop key="hibernate.current_session_context_class">thread</prop>
-                <prop key="hibernate.enable_lazy_load_no_trans">true</prop>
+                <!--<prop key="hibernate.current_session_context_class">thread</prop>-->
                 <prop key="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</prop>
+       <!--         <prop key="hibernate.enable_lazy_load_no_trans">true</prop>-->
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
             </props>
@@ -69,13 +77,15 @@
     </bean>
 
     <bean id="transactionManager"
-          class="org.springframework.orm.hibernate5.HibernateTransactionManager" >
+          class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
 
-    <!--<bean id="userService" class="ru.digdes.steammarketparser.service.impl.UserServiceImpl"/>-->
-
-
-
+    <task:annotation-driven executor="executor" scheduler="scheduler"/>
+    <task:executor id="executor" pool-size="15"/>
+    <task:scheduler id="scheduler" pool-size="10"/>
+    <task:scheduled-tasks>
+        <task:scheduled ref="priceWorker" method="collectPricesOfAllItems" fixed-delay="20000" initial-delay="5000"/>
+    </task:scheduled-tasks>
 </beans>

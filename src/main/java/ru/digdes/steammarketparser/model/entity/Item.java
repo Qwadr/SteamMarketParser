@@ -4,6 +4,7 @@ import lombok.Data;
 import ru.digdes.steammarketparser.model.enums.ItemQuality;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,9 +40,9 @@ public class Item {
     @Column(name = "Description", columnDefinition = "text")
     private String description;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name="ItemID")
-    private List<Price> prices;
+    private List<Price> prices = new ArrayList<>();
 
     @Override
     public String toString() {

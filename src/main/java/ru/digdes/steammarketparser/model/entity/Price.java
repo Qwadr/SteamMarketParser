@@ -23,10 +23,10 @@ public class Price {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PriceID")
-    private long priceID;
+    private Long priceID;
 
     @JsonIgnore //TODO dto & вытащить одно поле из item
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="ItemID")
     private Item item;
 
