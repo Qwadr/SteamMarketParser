@@ -18,7 +18,6 @@ public class ItemServiceImpl implements ItemService {
     @Autowired
     private ItemRepository itemRepository;
 
-
     @Override
     public Iterable<Item> findAll() {
         return itemRepository.findAll();

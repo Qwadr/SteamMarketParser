@@ -5,8 +5,8 @@ import org.springframework.stereotype.Component;
 import ru.digdes.steammarketparser.model.entity.Item;
 import ru.digdes.steammarketparser.model.entity.ItemTracking;
 import ru.digdes.steammarketparser.service.ItemTrackingService;
-import ru.digdes.steammarketparser.model.utils.HibernateDataGetter;
-import ru.digdes.steammarketparser.model.utils.InitialDataGenerator;
+//import ru.digdes.steammarketparser.model.utils.HibernateDataGetter;
+//import ru.digdes.steammarketparser.model.utils.InitialDataGenerator;
 
 import java.io.IOException;
 
@@ -26,9 +26,9 @@ public class ServerStarter {
 
     public static void main(String[] args) throws IOException {
 
-        InitialDataGenerator.generateAll();
-
-        HibernateDataGetter.testDatabaseAndViewResults();
+//        InitialDataGenerator.generateAll();
+//
+//        HibernateDataGetter.testDatabaseAndViewResults();
 
         Iterable<ItemTracking> trackings = itemTrackingService
                 .findItemTrackingsByTrackingStatusIsTrueOrderByItem_ItemID();

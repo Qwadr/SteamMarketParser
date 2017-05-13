@@ -17,7 +17,8 @@
         <servlet.version>3.1.0</servlet.version>
 
         <!-- Spring -->
-        <spring-framework.version>4.2.4.RELEASE</spring-framework.version>
+        <spring-framework.version>4.3.0.RELEASE</spring-framework.version>
+        <hibernate.version>4.3.6.Final</hibernate.version>
 
     </properties>
 
@@ -96,8 +97,20 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>5.2.9.Final</version>
+            <version>${hibernate.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>org.springframework</groupId>-->
+            <!--<artifactId>spring-hibernate</artifactId>-->
+            <!--<version>1.2.9</version>-->
+        <!--</dependency>-->
 
         <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
         <dependency>
@@ -153,6 +166,11 @@
             <version>2.5.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-dbcp</artifactId>
+            <version>7.0.55</version>
+        </dependency>
     </dependencies>
 
     <repositories>
@@ -175,6 +193,14 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <url>http://www.mydomain.com:8080/SteamMarketParser/</url>
                 </configuration>
             </plugin>
         </plugins>

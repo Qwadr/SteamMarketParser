@@ -3,6 +3,7 @@ package ru.digdes.steammarketparser.workers.impl;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import ru.digdes.steammarketparser.model.entity.Item;
 import ru.digdes.steammarketparser.model.entity.ItemTracking;
@@ -20,7 +21,6 @@ import ru.digdes.steammarketparser.service.ItemTrackingService;
 import ru.digdes.steammarketparser.service.PriceParser;
 import ru.digdes.steammarketparser.workers.PriceWorker;
 
-import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.logging.Level;
@@ -54,6 +54,7 @@ public class PriceWorkerImpl implements PriceWorker {
     private PriceParser priceParser;
 
     @Override
+    @Scheduled(fixedDelay = 20000, initialDelay = 5000)
     public void collectPricesOfAllItems() {
         Iterable<ItemTracking> trackings = itemTrackingService
                 .findItemTrackingsByTrackingStatusIsTrueOrderByItem_ItemID();
@@ -138,7 +139,7 @@ public class PriceWorkerImpl implements PriceWorker {
                 e.printStackTrace();
                 /*System.out.println("Что-то пошло не так: " + e.getLocalizedMessage());
                 System.out.println("--------------------------");*/
-        }
+            }
 //            itemRepository.save(newPrice.getItem());
         } else {
             Logger.getGlobal().log
