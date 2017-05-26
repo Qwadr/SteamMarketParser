@@ -30,6 +30,8 @@
         
         <property name="hibernate.hbm2ddl.auto">update</property>
 
+        <property name="hibernate.connection.autocommit">true</property>
+
         <!-- Mapping files -->
         <mapping class="ru.digdes.steammarketparser.model.entity.Item"/>
         <mapping class="ru.digdes.steammarketparser.model.entity.User"/>
